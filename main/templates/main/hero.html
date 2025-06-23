@@ -1,0 +1,33 @@
+{% load static %}
+<section id="hero" data-aos="fade-up" class="hero-section">
+  <div class="hero-container">
+    <img src="{% static 'profile/profile.jpg' %}" alt="Thangaraj M" class="hero-image">
+
+    <h1 class="hero-title">Hi, I’m <span class="highlight-name">Thangaraj M</span></h1>
+    <h4 class="text-muted">
+      <span id="typing-animation"></span>
+    </h4>
+
+    <a href="#projects" class="hero-btn">View My Projects</a>
+  </div>
+
+  {% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        new Typed("#typing-animation", {
+          strings: [
+            "Software Developer",
+            "AI/ML Enthusiast",
+            "Web and Mobile application developer",
+            "Problem Solver"
+          ],
+          typeSpeed: 50,
+          backSpeed: 30,
+          backDelay: 2000,
+          loop: true
+        });
+      });
+  </script>
+  {% endblock %}
+</section>

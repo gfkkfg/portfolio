@@ -1,0 +1,67 @@
+{% load custom_filters %}
+<section id="projects" data-aos="zoom-in" class="projects-section">
+  <div class="projects-container">
+    <h2 class="section-title">Projects</h2>
+
+    <!-- Filter Buttons -->
+    <center>
+      <div class="filters">
+        <button class="filter-btn" onclick="filterProjects('all')">All</button>
+        <button class="filter-btn" onclick="filterProjects('android')">Android</button>
+        <button class="filter-btn" onclick="filterProjects('ai')">AI/ML</button>
+        <button class="filter-btn" onclick="filterProjects('iot')">IoT</button>
+        <button class="filter-btn" onclick="filterProjects('web')">Web</button>
+      </div>
+    </center><br>
+
+    <!-- Project Cards -->
+    <div class="projects-grid" id="projectGrid">
+      {% for project in projects %}
+      <div class="project-card" data-images='[{% for image in project.images.all %}"{{ image.image.url }}"{% if not forloop.last %},{% endif %}{% endfor %}]'>
+        <h3 class="project-title">{{ project.title }}</h3>
+        <div class="carousel-container" id="carousel-{{ forloop.counter }}">
+          <div class="carousel-track">
+            {% for image in project.images.all %}
+              <img src="{{ image.image.url }}" alt="{{ project.title }}"
+                class="carousel-image"
+                onclick="openImageModal(this)"
+                data-index="{{ forloop.counter0 }}"
+                data-images='[{% for img in project.images.all %}"{{ img.image.url }}"{% if not forloop.last %},{% endif %}{% endfor %}]'>
+            {% endfor %}
+          </div>
+          <button class="carousel-btn prev" onclick="slidePrev({{ forloop.counter }})">&#10094;</button>
+          <button class="carousel-btn next" onclick="slideNext({{ forloop.counter }})">&#10095;</button>
+        </div>
+        <p class="project-description">{{ project.description|truncatewords:20 }}</p>
+        
+        <div class="project-tech">
+          {% for tech in project.tech_stack|split_by:"," %}
+            <span class="tech-badge">{{ tech }}</span>
+          {% endfor %}
+        </div>
+
+        <a href="#about" class="project-link" onclick="openModal(`{{ project.title }}`, `{{ project.description|escapejs }}`)">More Details</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Fullscreen Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+      <div class="modal-inner" onclick="event.stopPropagation();">
+        <span class="close-modal" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="modal-img" src="#" alt="Full Image">
+        <button class="nav-btn prev-btn" onclick="slideModal(-1)">&#10094;</button>
+        <button class="nav-btn next-btn" onclick="slideModal(1)">&#10095;</button>
+      </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal-overlay" onclick="closeModal()">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalBody"></p>
+      </div>
+    </div>
+  </div>
+</section>

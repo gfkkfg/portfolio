@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: django-portfolio
+    env: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn portfolio_gfk.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: portfolio_gfk.settings
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - fromDatabase:
+          name: django-db
+          property: connectionString
+
+databases:
+  - name: django-db

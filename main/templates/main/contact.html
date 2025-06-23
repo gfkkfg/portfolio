@@ -1,0 +1,47 @@
+<section id="contact" data-aos="fade-up" class="contact-container">
+  <h2 class="section-title">Contact Me</h2>
+  <p class="contact-text">I’m open to collaborations, freelance work, or just a friendly hello. Feel free to reach out!</p>
+
+  <div class="contact-content">
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="bi bi-envelope-fill"></i>
+        <a href="mailto:thangarajthegfk@gmail.com">thangarajthegfk@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <i class="bi bi-phone-fill"></i>
+        <span>+91 63790 99469</span>
+      </div>
+      <div class="contact-item">
+        <i class="bi bi-linkedin"></i>
+        <a href="https://www.linkedin.com/in/thangarajsankar" target="_blank">LinkedIn Profile</a>
+      </div>
+      <div class="contact-item">
+        <i class="bi bi-github"></i>
+        <a href="https://github.com/gfkkfg" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <form method="post" class="contact-form">
+      {% csrf_token %}
+      {% if messages %}
+        {% for message in messages %}
+          <div style="color: green;">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {{ form.name.label_tag }}
+      {{ form.name }}
+
+      {{ form.email.label_tag }}
+      {{ form.email }}
+
+      {{ form.message.label_tag }}
+      {{ form.message }}
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
