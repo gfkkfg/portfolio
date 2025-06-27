@@ -233,14 +233,15 @@ h2 {
 }
 
 .project-link {
-  color: #a0522d;
+  margin-right: 10px;
+  color: #333;
   font-weight: bold;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
 
 .project-link:hover {
-  color: #6b8e23;
+  color: var(--primary-color);
 }
 
 /* Modal for project details */
@@ -252,19 +253,20 @@ h2 {
   background: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .modal-content {
-  background: var(--bg-light);
-  color: #333;
+  background-color: var(--bg-alternate);
+  color: var(--text-color);
   padding: 30px;
   border-radius: 10px;
   max-width: 600px;
   width: 90%;
   position: relative;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   animation: fadeIn 0.3s ease;
+  z-index: 1000;
 }
 
 .modal-close {
