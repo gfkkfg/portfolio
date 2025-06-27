@@ -40,11 +40,19 @@
           {% endfor %}
         </div>
 
-        {% if project.project_link %}
-          <a href="{{ project.project_link }}" class="projectlink" target="_blank">
-            <i class="bi bi-github"></i> View Code
-          </a>
-        {% endif %}
+        <div class="project-links">
+          {% if project.github_link %}
+            <a href="{{ project.github_link }}" class="project-link" target="_blank">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+          {% endif %}
+
+          {% if project.project_link %}
+            <a href="{{ project.project_link }}" class="project-link" target="_blank">
+              <i class="bi bi-box-arrow-up-right"></i> Live Demo
+            </a>
+          {% endif %}
+        </div>
         
         <a href="#project" class="project-link" onclick="openModal(`{{ project.title }}`, `{{ project.description|escapejs }}`)">More Details</a>
       </div>

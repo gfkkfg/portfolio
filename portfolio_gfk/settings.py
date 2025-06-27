@@ -124,6 +124,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  
 ]
 
+from datetime import datetime
+STATIC_VERSION = datetime.now().strftime("%Y%m%d%H%M%S")
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

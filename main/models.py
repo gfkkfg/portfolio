@@ -12,7 +12,7 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     tech_stack = models.CharField(max_length=200)
-    project_link = models.URLField(blank=True)
+    github_link = models.URLField(blank=True)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='others')
 
     def __str__(self):
