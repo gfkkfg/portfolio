@@ -7,5 +7,7 @@ class ProjectImageInline(admin.TabularInline):
 
 class ProjectAdmin(admin.ModelAdmin):
     inlines = [ProjectImageInline]
+    list_display = ('title', 'tech_stack', 'project_link')
+    fields = ('title', 'description', 'tech_stack', 'project_link') 
 
 admin.site.register(Project, ProjectAdmin)

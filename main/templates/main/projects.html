@@ -17,7 +17,7 @@
     <!-- Project Cards -->
     <div class="projects-grid" id="projectGrid">
       {% for project in projects %}
-      <div class="project-card" data-images='[{% for image in project.images.all %}"{{ image.image.url }}"{% if not forloop.last %},{% endif %}{% endfor %}]'>
+      <div class="project-card" data-category="{{ project.category }}">
         <h3 class="project-title">{{ project.title }}</h3>
         <div class="carousel-container" id="carousel-{{ forloop.counter }}">
           <div class="carousel-track">
@@ -40,9 +40,24 @@
           {% endfor %}
         </div>
 
-        <a href="#about" class="project-link" onclick="openModal(`{{ project.title }}`, `{{ project.description|escapejs }}`)">More Details</a>
+        {% if project.project_link %}
+          <a href="{{ project.project_link }}" class="projectlink" target="_blank">
+            <i class="bi bi-github"></i> View Code
+          </a>
+        {% endif %}
+        
+        <a href="#project" class="project-link" onclick="openModal(`{{ project.title }}`, `{{ project.description|escapejs }}`)">More Details</a>
       </div>
       {% endfor %}
+
+      <!-- Project Modal -->
+      <div id="projectModal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <span class="modal-close" onclick="closeModal()">&times;</span>
+          <h3 id="modalTitle"></h3>
+          <p id="modalBody"></p>
+        </div>
+      </div>
     </div>
 
     <!-- Fullscreen Image Modal -->
@@ -52,15 +67,6 @@
         <img id="modalImage" class="modal-img" src="#" alt="Full Image">
         <button class="nav-btn prev-btn" onclick="slideModal(-1)">&#10094;</button>
         <button class="nav-btn next-btn" onclick="slideModal(1)">&#10095;</button>
-      </div>
-    </div>
-
-    <!-- Project Modal -->
-    <div id="projectModal" class="modal-overlay" onclick="closeModal()">
-      <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <h3 id="modalTitle"></h3>
-        <p id="modalBody"></p>
       </div>
     </div>
   </div>
