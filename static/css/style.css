@@ -232,16 +232,28 @@ h2 {
   text-decoration: underline;
 }
 
+.project-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
 .project-link {
-  margin-right: 10px;
-  color: #333;
-  font-weight: bold;
-  text-decoration: underline;
-  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  background-color: #e6f4ea;
+  color: #1c4532;
+  transition: background-color 0.3s;
 }
 
 .project-link:hover {
-  color: var(--primary-color);
+  background-color: #c6ebd8;
 }
 
 /* Modal for project details */
@@ -249,7 +261,8 @@ h2 {
   display: none;
   position: fixed;
   top: 0; left: 0;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
@@ -257,16 +270,19 @@ h2 {
 }
 
 .modal-content {
-  background-color: var(--bg-alternate);
+  background-color: white; 
   color: var(--text-color);
   padding: 30px;
   border-radius: 10px;
   max-width: 600px;
   width: 90%;
   position: relative;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  animation: fadeIn 0.3s ease;
   z-index: 1000;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--primary-color);
 }
 
 .modal-close {
@@ -295,8 +311,9 @@ h2 {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
+  max-width: 100%; 
 }
+
 .carousel-track::-webkit-scrollbar {
   display: none; /* Chrome */
 }
@@ -652,4 +669,9 @@ button:hover {
     width: 200px;
     height: 200px;
   }
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
